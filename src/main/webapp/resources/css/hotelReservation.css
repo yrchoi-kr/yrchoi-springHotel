@@ -1,0 +1,26 @@
+@charset "UTF-8";
+@media all and (min-width:1066px){
+/* 상단로고, 메뉴영역 */
+.header_area h1 {
+    padding-left: 0px;
+}
+
+/* //상단로고, 메뉴영역 */
+/* 겔러리, 공지사항 최근 게시물 영역 */
+.abody{
+    background-image: url(../Image/hotel_admin.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.about_box {
+    border:1px solid;
+    padding: 10px;
+    width:380px; 
+}
+.reservationMid{
+    padding:0px;
+    margin:0px auto;
+}
+
+/* //푸터영역 */
+}

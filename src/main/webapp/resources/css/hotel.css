@@ -1,0 +1,20 @@
+@charset "UTF-8";
+@media all and (min-width:1066px){
+/* 상단로고, 메뉴영역 */
+.header_area h1 {
+    padding-left: 0px;
+}
+.hbody{
+    background-image: url(../Image/hotel_main.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+/* //상단로고, 메뉴영역 */
+/* 겔러리, 공지사항 최근 게시물 영역 */
+.td_area {
+    padding: 0px;
+    
+}
+
+/* //푸터영역 */
+}
