@@ -30,6 +30,9 @@
             <button onclick="window.location.href='hotelReservation'" class="btn btn-secondary btn-lg">
                 예약관리
             </button>
+            <button onclick="window.location.href='login'" class="btn btn-warning btn-lg" style="float:right;">
+                로그아웃
+            </button>
         </div>
 	</header>
     <!-- //헤더상단메뉴영역영역 -->
