@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,21 +21,21 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body class=abody>
-    
     <!-- 헤더상단메뉴영역영역 -->
 	<header id="header">
 		<div class="header_area box_inner clear" style="padding:10px;">
-            <button onclick="window.location.href='/yrchoiHotel'" class="btn btn-primary btn-lg">
+            <button onclick="window.location.href='room'" class="btn btn-secondary btn-lg">
                 객실관리
             </button>
-            <button onclick="window.location.href='hotelReservation'" class="btn btn-secondary btn-lg">
+            <button onclick="window.location.href='hotelReservation'" class="btn btn-primary btn-lg" name="user_id" value="{user_id:yr}">
                 예약관리
             </button>
-            <button onclick="window.location.href='login'" class="btn btn-warning btn-lg" style="float:right;">
+            <button onclick="window.location.href='logout'" class="btn btn-warning btn-lg" style="float:right;">
                 로그아웃
             </button>
         </div>
 	</header>
+	<p style="color:white;">환영합니다 ${loginid}</p>
     <!-- //헤더상단메뉴영역영역 -->
     <!-- 메인콘텐츠영역 -->
     <div id="container">

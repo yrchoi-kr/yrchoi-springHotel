@@ -24,31 +24,24 @@
 	<!-- 헤더상단메뉴영역영역 -->
 	<header id="header">
 		<div class="header_area box_inner clear" style="padding:10px;">
-            <button onclick="window.location.href='hotelRoom'" class="btn btn-primary btn-lg">
+            <button onclick="window.location.href='room'" class="btn btn-primary btn-lg">
                 객실관리
             </button>
-            <button onclick="window.location.href='hotelReservation'" class="btn btn-secondary btn-lg">
+            <button type="submit" method="post" onclick="window.location.href='hotelReservation'" class="btn btn-secondary btn-lg">
                 예약관리
             </button>
-              <button onclick="window.location.href='login'" class="btn btn-warning btn-lg" style="float:right;">
+              <button id="booking" onclick="window.location.href='logout'" class="btn btn-warning btn-lg" style="float:right; margin-left:5px;">
                 로그아웃
             </button>
         </div>
-        
-        <div class="header_area box_inner clear" style="padding:10px;">
-            <button onclick="window.location.href='newbie'" class="btn btn-primary btn-lg">
-                회원가입
-            </button>
-            <button onclick="window.location.href='login'" class="btn btn-secondary btn-lg">
-                로그인
-            </button>
-        </div>
+
 	</header>
+	<p style="color:white;">환영합니다 ${loginid}</p>
 	<!-- //헤더상단메뉴영역영역 -->
 	<!-- 메인콘텐츠영역 -->
 	<div id="container">
 		<!-- 갤러리최근게시물영역 -->
-        <div style="float: left; width: 33%;border-left: 10px;margin-top: 100px;">
+        <div style="float: left; width: 33%;border-left: 10px;margin-top: 150px;">
             <h2 style="background-color: thistle;text-align: center;width: 60%;;border-radius:10px;">객실목록</h2>
             <div class="about_box" style="border: 1px solid; width: 60%;background-color: white;text-align: center;border-radius:10px;">
                 <table>

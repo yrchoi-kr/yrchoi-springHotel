@@ -15,7 +15,7 @@ if("${param.msg}" == "fail") {
     <!-- 메인본문영역 -->
     <div class="bodytext_area box_inner">
         <!-- 폼영역 -->
-        <form name="login_form" action="/yrchoiHotel/viewinfo" class="appForm">
+        <form name="login_form" action="/yrchoiHotel/check_user" class="appForm" method="post">
             <fieldset>
                 <legend>로그인폼</legend>
                 <p class="info_pilsoo pilsoo_item">필수입력</p>
@@ -33,6 +33,7 @@ if("${param.msg}" == "fail") {
                 <p class="btn_line">
                 <button type="submit" class="btn_baseColor">로그인</button>
                 <button type="button" class="btn_baseColor" onclick="window.location.href='/yrchoiHotel'">돌아가기</button>
+                <button onclick="window.location.href='newbie'" class="btn btn-primary btn-lg" margin-left:5px;">회원가입</button>
                 </p>	
             </fieldset>
         </form>
