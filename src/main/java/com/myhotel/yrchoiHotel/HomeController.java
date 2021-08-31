@@ -1,8 +1,12 @@
 package com.myhotel.yrchoiHotel;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class HomeController {
+	@Autowired
+	private SqlSession sqlSession;
+	private SqlSession sqlSession2;
 	private HttpSession session;
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -25,6 +32,14 @@ public class HomeController {
 	public String login(Model model) {
 		String loginid = (String) session.getAttribute("loginid");
 		model.addAttribute("loginid",loginid);
+		iRoom room = sqlSession.getMapper(iRoom.class);
+		ArrayList<Roominfo> roominfo=room.getRoomList();
+		model.addAttribute("list",roominfo);
+
+		ArrayList<Roomtype> roomtype=room.getRoomType();
+		System.out.println(roomtype);
+	    model.addAttribute("Rtype",roomtype);
+		
 		return "room";
 	}
 	@RequestMapping(value = "/newbie", method = RequestMethod.GET)

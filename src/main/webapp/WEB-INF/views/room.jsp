@@ -42,19 +42,15 @@
 	<div id="container">
 		<!-- 갤러리최근게시물영역 -->
         <div style="float: left; width: 33%;border-left: 10px;margin-top: 150px;">
-            <h2 style="background-color: thistle;text-align: center;width: 60%;;border-radius:10px;">객실목록</h2>
+            <h2 id =roomlist style="background-color: thistle;text-align: center;width: 60%;;border-radius:10px;">객실목록</h2>
             <div class="about_box" style="border: 1px solid; width: 60%;background-color: white;text-align: center;border-radius:10px;">
-                <table>
-                    <tr>
-                        <p class="txt">한라산</p>
-                    </tr>
-                    <tr>
-                        <p class="txt">백두산</p>
-                    </tr>
-                    <tr>                        
-                        <p class="txt">장발산</p>                 
-                    </tr>
-                </table>
+                <select class ="leftR" size="5" >
+          			<c:forEach items="${list}" var="room" varStatus="status">
+	                    <option id=leftRoom${status.count} value="${room.roomcode}">
+	                        ${room.roomname} ${room.typename} ${room.howmany}명 ${room.howmuch}
+	                    </option>
+                    </c:forEach>
+                </select>
             </div>
         </div>
         <div style="float: left; width: 50%;margin-left: 6%;margin-top: 250px;">
@@ -64,7 +60,7 @@
                             <td style="background-color: white;border-radius: 5px;text-align: center;"><b>객실이름</b></td>
                             <td>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" placeholder="객실이름">
+                                    <input type="text" id=roomName class="form-control" placeholder="객실이름">
                                 </div>
                             </td>
                            
@@ -74,12 +70,13 @@
                     <tr style="margin-top: 30px;">
                         <td style="background-color: white;border-radius: 5px;text-align: center;"><b>객실분류</b></td>
                         <td>
-                            <select multiple class="form-control" style="width:86%;margin-left:7%">
-                            <option>Suite Room</option>
-                            <option>Family Room</option>
-                            <option>Double Room</option>
-                            <option>Single Room</option>
-                            <option>Domitory</option>
+                            <select multiple class="form-control" id=roomTypeS style="width:86%;margin-left:7%">
+                           
+							<c:forEach items="${Rtype}" var="type">
+							 <option value="${type.typeCode}">
+							 	${type.name} 
+							 </option>
+                    		</c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -87,7 +84,7 @@
                         <td style="background-color: white;border-radius: 5px;text-align: center;"><b>숙박가능인원</b></td>
                         <td>                              
                             <div class="col-sm-12">
-                                <input type="number" class="form-control" placeholder="숙박가능인원">
+                                <input type="text" id=roomCepa class="form-control" placeholder="숙박가능인원">
                             </div>
                         </td>
                     </tr>
@@ -95,7 +92,7 @@
                         <td style="background-color: white;border-radius: 5px;text-align: center;"><b>1박요금</b></td>
                         <td>
                             <div class="col-sm-12">
-                                <input type="money" class="form-control" placeholder="1박요금">
+                                <input type="money" id=roomPrice class="form-control" placeholder="1박요금">
                             </div>
                         </td>
                     </tr>
@@ -116,4 +113,103 @@
 
 
 </body>
+<script src='http://code.jquery.com/jquery-3.5.0.js'></script>
+<script>
+
+/* $('.leftR option').each(function (index,item){
+	console.log(item);
+}) */
+
+$(document)
+	.on('click','#leftRoom1',function(){
+		var textR = $('#leftRoom1').text();
+		textR = $.trim(textR);
+		console.log(textR);
+		textR = textR.split(" ");
+		console.log(textR[1]);
+	    $('#roomName').val(textR[0]);
+	    if(textR[1] == "Suite"){
+	    	 $("#roomTypeS").val("1").prop("selected", true);
+	    }
+	    if(textR[1] == "Family"){
+	    	 $("#roomTypeS").val("2").prop("selected", true);
+	    }
+	    if(textR[1] == "Double"){
+	    	 $("#roomTypeS").val("3").prop("selected", true);
+	    }
+	    if(textR[1] == "Single"){
+	    	 $("#roomTypeS").val("4").prop("selected", true);
+	    }
+		$('#roomCepa').val(textR[3]);
+		$('#roomPrice').val(textR[4]);
+	    return false; //stop bubbling
+	})
+	.on('click','#leftRoom2',function(){
+		var textR = $('#leftRoom2').text();
+		textR = $.trim(textR);
+		console.log(textR);
+		textR = textR.split(" ");
+	    $('#roomName').val(textR[0]);
+	    if(textR[1] == "Suite"){
+	    	 $("#roomTypeS").val("1").prop("selected", true);
+	    }
+	    if(textR[1] == "Family"){
+	    	 $("#roomTypeS").val("2").prop("selected", true);
+	    }
+	    if(textR[1] == "Double"){
+	    	 $("#roomTypeS").val("3").prop("selected", true);
+	    }
+	    if(textR[1] == "Single"){
+	    	 $("#roomTypeS").val("4").prop("selected", true);
+	    }
+		$('#roomCepa').val(textR[3]);
+		$('#roomPrice').val(textR[4]);
+	    return false; //stop bubbling
+	})
+	.on('click','#leftRoom3',function(){
+		var textR = $('#leftRoom3').text();
+		textR = $.trim(textR);
+		console.log(textR);
+		textR = textR.split(" ");
+	    $('#roomName').val(textR[0]);
+	    if(textR[1] == "Suite"){
+	    	 $("#roomTypeS").val("1").prop("selected", true);
+	    }
+	    if(textR[1] == "Family"){
+	    	 $("#roomTypeS").val("2").prop("selected", true);
+	    }
+	    if(textR[1] == "Double"){
+	    	 $("#roomTypeS").val("3").prop("selected", true);
+	    }
+	    if(textR[1] == "Single"){
+	    	 $("#roomTypeS").val("4").prop("selected", true);
+	    }
+		$('#roomCepa').val(textR[3]);
+		$('#roomPrice').val(textR[4]);
+	    return false; //stop bubbling
+	})
+	.on('click','#leftRoom4',function(){
+		var textR = $('#leftRoom4').text();
+		textR = $.trim(textR);
+		console.log(textR);
+		textR = textR.split(" ");
+	    $('#roomName').val(textR[0]);
+	    if(textR[1] == "Suite"){
+	    	 $("#roomTypeS").val("1").prop("selected", true);
+	    }
+	    if(textR[1] == "Family"){
+	    	 $("#roomTypeS").val("2").prop("selected", true);
+	    }
+	    if(textR[1] == "Double"){
+	    	 $("#roomTypeS").val("3").prop("selected", true);
+	    }
+	    if(textR[1] == "Single"){
+	    	 $("#roomTypeS").val("4").prop("selected", true);
+	    }
+		$('#roomCepa').val(textR[3]);
+		$('#roomPrice').val(textR[4]);
+	    return false; //stop bubbling
+	})
+
+</script>
 </html>
