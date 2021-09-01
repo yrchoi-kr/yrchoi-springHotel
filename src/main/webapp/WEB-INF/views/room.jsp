@@ -42,9 +42,9 @@
 	<div id="container">
 		<!-- 갤러리최근게시물영역 -->
         <div style="float: left; width: 33%;border-left: 10px;margin-top: 150px;">
-            <h2 id =roomlist style="background-color: thistle;text-align: center;width: 60%;;border-radius:10px;">객실목록</h2>
-            <div class="about_box" style="border: 1px solid; width: 60%;background-color: white;text-align: center;border-radius:10px;">
-                <select class ="leftR" size="5" >
+            <h2 id =roomlist style="background-color:#2e806da1;text-align: center;width: 60%;;border-radius:10px;">객실목록</h2>
+            <div class="about_box" style="width: 60%;background-color: white;text-align: center;border-radius:10px;">
+                <select class="form-control" id ="leftR" size="5" >
           			<c:forEach items="${list}" var="room" varStatus="status">
 	                    <option id=leftRoom${status.count} value="${room.roomcode}">
 	                        ${room.roomname} ${room.typename} ${room.howmany}명 ${room.howmuch}
@@ -70,7 +70,7 @@
                     <tr style="margin-top: 30px;">
                         <td style="background-color: white;border-radius: 5px;text-align: center;"><b>객실분류</b></td>
                         <td>
-                            <select multiple class="form-control" id=roomTypeS style="width:86%;margin-left:7%">
+                            <select size=4 class="form-control" id=roomTypeS style="width:86%;margin-left:7%">
                            
 							<c:forEach items="${Rtype}" var="type">
 							 <option value="${type.typeCode}">
@@ -100,7 +100,7 @@
                 <div style="margin: left 2%;margin-top: 3%;">
                 <button class="btn btn-primary" type="submit" name =createRoom style="width:10%;" onclick="">등록</button>
                 <button class="btn btn-danger" type="submit" name =deleteRoom style="width:10%;" onclick="">삭제</button>
-                <button class="btn btn-warning" type="reset" name =clearForm style="width:10%;" onclick="">Clear</button>
+                <button class="btn btn-warning" type="reset" name =clearForm style="width:10%;" id =btnClear onclick="">Clear</button>
                 </div>
         </div>
 	</div>
@@ -121,14 +121,22 @@
 }) */
 
 $(document)
-	.on('click','#leftRoom1',function(){
-		var textR = $('#leftRoom1').text();
+	.ready(function(){
+		$.post("http://localhost:8080/yrchoiHotel/getRoomList",{},function(result){
+			console.log(result);
+		},'json');
+	})
+	.on('click','#leftR option',function(){
+		var textR = $(this).text();
 		textR = $.trim(textR);
 		console.log(textR);
 		textR = textR.split(" ");
 		console.log(textR[1]);
-	    $('#roomName').val(textR[0]);
-	    if(textR[1] == "Suite"){
+	    $('#roomName').val(textR[0]); 
+	    /* $('#roomTypeS option:contains("'+textR[1]+'")').attr("selected", true); */
+	    console.log(textR[1]);
+	    console.log('#roomTypeS option:contains("'+textR[1]+'")');
+  	    if(textR[1] == "Suite"){
 	    	 $("#roomTypeS").val("1").prop("selected", true);
 	    }
 	    if(textR[1] == "Family"){
@@ -139,76 +147,13 @@ $(document)
 	    }
 	    if(textR[1] == "Single"){
 	    	 $("#roomTypeS").val("4").prop("selected", true);
-	    }
+	    }  
 		$('#roomCepa').val(textR[3]);
 		$('#roomPrice').val(textR[4]);
 	    return false; //stop bubbling
 	})
-	.on('click','#leftRoom2',function(){
-		var textR = $('#leftRoom2').text();
-		textR = $.trim(textR);
-		console.log(textR);
-		textR = textR.split(" ");
-	    $('#roomName').val(textR[0]);
-	    if(textR[1] == "Suite"){
-	    	 $("#roomTypeS").val("1").prop("selected", true);
-	    }
-	    if(textR[1] == "Family"){
-	    	 $("#roomTypeS").val("2").prop("selected", true);
-	    }
-	    if(textR[1] == "Double"){
-	    	 $("#roomTypeS").val("3").prop("selected", true);
-	    }
-	    if(textR[1] == "Single"){
-	    	 $("#roomTypeS").val("4").prop("selected", true);
-	    }
-		$('#roomCepa').val(textR[3]);
-		$('#roomPrice').val(textR[4]);
-	    return false; //stop bubbling
-	})
-	.on('click','#leftRoom3',function(){
-		var textR = $('#leftRoom3').text();
-		textR = $.trim(textR);
-		console.log(textR);
-		textR = textR.split(" ");
-	    $('#roomName').val(textR[0]);
-	    if(textR[1] == "Suite"){
-	    	 $("#roomTypeS").val("1").prop("selected", true);
-	    }
-	    if(textR[1] == "Family"){
-	    	 $("#roomTypeS").val("2").prop("selected", true);
-	    }
-	    if(textR[1] == "Double"){
-	    	 $("#roomTypeS").val("3").prop("selected", true);
-	    }
-	    if(textR[1] == "Single"){
-	    	 $("#roomTypeS").val("4").prop("selected", true);
-	    }
-		$('#roomCepa').val(textR[3]);
-		$('#roomPrice').val(textR[4]);
-	    return false; //stop bubbling
-	})
-	.on('click','#leftRoom4',function(){
-		var textR = $('#leftRoom4').text();
-		textR = $.trim(textR);
-		console.log(textR);
-		textR = textR.split(" ");
-	    $('#roomName').val(textR[0]);
-	    if(textR[1] == "Suite"){
-	    	 $("#roomTypeS").val("1").prop("selected", true);
-	    }
-	    if(textR[1] == "Family"){
-	    	 $("#roomTypeS").val("2").prop("selected", true);
-	    }
-	    if(textR[1] == "Double"){
-	    	 $("#roomTypeS").val("3").prop("selected", true);
-	    }
-	    if(textR[1] == "Single"){
-	    	 $("#roomTypeS").val("4").prop("selected", true);
-	    }
-		$('#roomCepa').val(textR[3]);
-		$('#roomPrice').val(textR[4]);
-	    return false; //stop bubbling
+	.on('click','#btnClear',function(){
+		$("#roomName,#roomTypeS,#roomCepa,#roomPrice").val("");
 	})
 
 </script>
