@@ -1,31 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./include/header.jsp" %>
-<!-- 게시판용 CSS 임포트 -->
-<link rel="stylesheet" href="/resources/home/css/board.css">
-<!-- html5가 아닌 JS로 유효성 검사 코어 2개 임포트 -->
-<script src="/resources/home/js/jquery.validate.js"></script>
-<script src="/resources/home/js/additional-methods.js"></script>
-<script>
-// 회원가입 전용 유효성 검사 부분
-$(document).ready(function() {
-	$('.appForm').validate({
-		rules:{
-			password:"required",//password 인풋태그의 이름,입력값 공백체크
-			password_chk: {     //password_chk 인풋태그의 이름.
-				equalTo:'#password_lbl'//input 태그의 id값과 비교
-			}
-		}
-	});
-	// 유효성검사 확인 메세지를 한글로 출력하기
-	$.extend($.validator.messages, {
-		required:"필수 항목 입니다.",
-		email: "유효하지 않는 Email 주소 입니다.",
-		digits: "숫자만 입력 가능합니다.",
-		equalTo: "비밀번호가 일치하지 않습니다."
-	});
-});
-</script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | 로그인 & 회원가입 </title>
+  <!-- Google Font: Source Sans Pro 구글웹폰트 -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<!-- 여기까지 header.jsp영역 -->
 <style>
 .radio_area {
 	box-sizing: border-box;
@@ -39,11 +25,11 @@ $(document).ready(function() {
 	<!-- 메인본문영역 -->
 	<div class="bodytext_area box_inner">
 		<!-- 폼영역 -->
-		<form name="join_form" action="/yrchoiHotel/newinfo" class="appForm">
+		<form name="join_form" action="/yrchoiHotel/signin" method="post" class="appForm">
 			<fieldset>
 				<legend>회원가입폼</legend>
 				<p class="info_pilsoo pilsoo_item">
-				필수입력(회원가입 후 관리자가 승인해 줘야만, 로그인이 가능합니다!)
+				필수입력
 				</p>
 				<ul class="app_list">
 					<li class="clear">
@@ -64,14 +50,10 @@ $(document).ready(function() {
 						<label for="user_name_lbl" class="tit_lbl pilsoo_item">사용자이름</label>
 						<div class="app_content"><input type="text" name="user_name" class="w100p" id="user_name_lbl" placeholder="사용자이름을 입력해주세요" required/></div>
 					</li>
-					<li class="clear">
-						<label for="email_lbl" class="tit_lbl pilsoo_item">이메일</label>
-						<div class="app_content"><input type="email" name="email" class="w100p" id="email_lbl" placeholder="이메일을 입력해주세요" required/></div>
-					</li>
 
 				</ul>
 				<p class="btn_line">
-				<button type="submit"  class="btn_baseColor" id="btn_insert">Submit</button>
+				<button type="submit"  class="btn_baseColor" id="btn_insert" >Submit</button>
 				<button onclick="window.location.href='/yrchoiHotel'" class="btn btn-secondary btn-lg">돌아가기</button>
 				</p>	
 			</fieldset>
@@ -83,4 +65,49 @@ $(document).ready(function() {
 </div>
 <!-- //메인콘텐츠영역 -->
 
-<%@ include file="./include/footer.jsp" %>
+
+<!-- AdminLTE for demo purposes 오른쪽메뉴-로그아웃사용 코어: 사용안함. -->
+<!-- <script src="/resources/admin/dist/js/demo.js"></script> -->
+</body>
+<script src='http://code.jquery.com/jquery-3.5.0.js'></script>
+<script>
+// 회원가입 전용 유효성 검사 부분
+$(document)
+.on('click','#btn_insert',function(){
+	if($('#user_name_lbl').val()==''){
+		alert ('이름을 입력하시오.');
+		return false;
+	}
+	if($('#user_id_lbl').val()==''){
+		alert('로그인 아이디를 입력하시오');
+		return false;
+	}
+	if($('#password_lbl').val()==''){
+		alert('비번을 입력하시오');
+		return false;
+	}
+	var pw1 = $('#password_lbl').val();
+	var pw2 = $('#password_chk_lbl').val();
+	if(pw1 != pw2){
+		alert("패스워드 확인 바랍니다.");
+		return false;
+	}
+});
+</script>
+</html>
+<style>
+
+/*css 재정의 (override)*/
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active
+{
+background-color:#fff;
+color:#000;
+}
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover 
+{
+background-color:fff;
+color:#000;
+}
+
+</style>
+

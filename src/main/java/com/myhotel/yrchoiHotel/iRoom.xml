@@ -10,4 +10,54 @@
 	<select id="getRoomType" resultType="com.myhotel.yrchoiHotel.Roomtype">
 		select typecode, name from roomtype order by typecode
 	</select>
+	<delete id="doDeleteRoom">
+		delete from room where roomcode=#{param1}
+	</delete>
+	<insert id="doAddRoom">
+		insert into room(roomcode,name,type,howmany,howmuch)
+		values(seq_room.nextval,#{param1},#{param2},#{param3},#{param4})
+	</insert>
+	<update id="doUpdateRoom">
+		update room set name=#{param2},type=#{param3},howmany=#{param4},howmuch=#{param5}
+		where roomcode=#{param1}
+	</update>
+	<!--아래부터 예약관련  -->
+	<select id="getBookingList" resultType="com.myhotel.yrchoiHotel.Bookinginfo">
+		select a.bookcode,b.name roomname,a.roomcode,a.person,a.checkin,a.checkout,a.name,a.mobile from booking a, room b where a.roomcode =b.roomcode order by bookcode
+	</select>
+	<delete id="doDeleteBook">
+		delete from booking where bookcode=#{param1}
+	</delete>
+	<insert id="doAddBook">
+		insert into booking(bookcode,roomcode,person,checkin,checkout,name,mobile)
+		values(seq_booking.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
+	</insert>
+	<update id="doUpdateBook">
+		update booking set roomcode=#{param2},person=#{param3},checkin=#{param4},checkout=#{param5},name=#{param6},mobile=#{param7}
+		where bookcode=#{param1}
+	</update>
+	<select id="getBookingListSearch" resultType="com.myhotel.yrchoiHotel.Bookinginfo">
+		
+		select a.bookcode,b.name roomname,a.roomcode,a.person,a.checkin,a.checkout,a.name,a.mobile from booking a, room b 
+		where a.checkout &gt; #{param1} and a.checkin &lt; #{param2} 
+		and a.roomcode = b.roomcode 
+		order by bookcode
+		
+	</select>
+	<select id="getRoomListSearch" resultType="com.myhotel.yrchoiHotel.Roominfo">
+		
+		select a.roomcode,a.name roomname,b.name typename,a.howmany,a.howmuch,b.typecode from  room a, roomtype b where roomcode in (select roomcode from room
+		minus
+		select distinct roomcode from booking where checkout &gt; #{param1} and checkin &lt; #{param2} 
+		) and a.type =b.typecode and typecode=#{param3}
+		
+	</select>
+	<select id="getRoomListSearchAll" resultType="com.myhotel.yrchoiHotel.Roominfo">
+		
+		select a.roomcode,a.name roomname,b.name typename,a.howmany,a.howmuch,b.typecode from  room a, roomtype b where roomcode in (select roomcode from room
+		minus
+		select distinct roomcode from booking where checkout &gt; #{param1} and checkin &lt; #{param2} 
+		) and a.type =b.typecode
+		
+	</select>
 </mapper>

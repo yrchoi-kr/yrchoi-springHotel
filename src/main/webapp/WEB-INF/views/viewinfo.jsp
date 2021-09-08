@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입 완료</title>
 </head>
 <body>
 	<p>로그인 id는 ${user_id}<p>

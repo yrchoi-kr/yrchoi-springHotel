@@ -9,11 +9,6 @@
   <title>AdminLTE 3 | 로그인 & 회원가입 </title>
   <!-- Google Font: Source Sans Pro 구글웹폰트 -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome 폰트어썸 -->
-  <link rel="stylesheet" href="/resources/admin/plugins/fontawesome-free/css/all.min.css">
-  <!-- Tempusdominus Bootstrap 4 부트스트랩4 -->
-  <link rel="stylesheet" href="/resources/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <!-- 여기까지 header.jsp영역 -->

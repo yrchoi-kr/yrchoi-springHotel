@@ -22,7 +22,7 @@ if("${param.msg}" == "fail") {
                 <ul class="app_list">
                     <li class="clear">
                         <label for="id_lbl" class="tit_lbl pilsoo_item">아이디</label>
-                        <div class="app_content"><input autofocus type="text" name="user_id"" class="w100p" id="id_lbl" placeholder="아이디를 입력해주세요" required/></div>
+                        <div class="app_content"><input autofocus type="text" name="user_id" class="w100p" id="id_lbl" placeholder="아이디를 입력해주세요" required/></div>
                     </li>
                     <li class="clear">
                         <label for="password_lbl" class="tit_lbl pilsoo_item">암호</label>
@@ -31,7 +31,7 @@ if("${param.msg}" == "fail") {
 
                 </ul>
                 <p class="btn_line">
-                <button type="submit" class="btn_baseColor">로그인</button>
+                <button type="submit" class="btn_baseColor" id=formLogin>로그인</button>
                 <button type="button" class="btn_baseColor" onclick="window.location.href='/yrchoiHotel'">돌아가기</button>
                 <button onclick="window.location.href='newbie'" class="btn btn-primary btn-lg" margin-left:5px;">회원가입</button>
                 </p>	
@@ -46,11 +46,18 @@ if("${param.msg}" == "fail") {
 <%@ include file="./include/footer.jsp" %>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
 <script>
-$(document).ready(function(){
-	$("#btn_naver_login").click(function(){
-		//alert("준비중 입니다.");
-		location.replace("${url}");//login컨트롤로에서 model로 받은 $url변수값이 필요
-		//위 url자바변수값은 네이버의 RestAPI주소 입니다.(네아로 인증 ID와 secret암호 URL에 포함됨.)
-	});
+$(document).on('submit','#formLogin',function(){
+	let pstr = $.trim($('input[name=user_id]').val());
+	$('input[name=userid]').val(pstr);
+	pstr=$.trim($('input[name=passcode]').val());
+	$('input[name=userid]').val(pstr);
+	if($('input[name=user_id]').val()==''){
+		alert('로그인 아이디를 입력하시오.');
+		return false;
+	}
+	if($('input[name=passcode]').val()==''){
+		alert('비밀번호를 입력하시오.');
+		return false;
+	}
 });
 </script>

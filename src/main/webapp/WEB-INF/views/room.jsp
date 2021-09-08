@@ -44,12 +44,12 @@
         <div style="float: left; width: 33%;border-left: 10px;margin-top: 150px;">
             <h2 id =roomlist style="background-color:#2e806da1;text-align: center;width: 60%;;border-radius:10px;">객실목록</h2>
             <div class="about_box" style="width: 60%;background-color: white;text-align: center;border-radius:10px;">
-                <select class="form-control" id ="leftR" size="5" >
-          			<c:forEach items="${list}" var="room" varStatus="status">
+                <select class="form-control" id ="leftR" size="10" >
+<%--           			<c:forEach items="${list}" var="room" varStatus="status">
 	                    <option id=leftRoom${status.count} value="${room.roomcode}">
 	                        ${room.roomname} ${room.typename} ${room.howmany}명 ${room.howmuch}
 	                    </option>
-                    </c:forEach>
+                    </c:forEach> --%>
                 </select>
             </div>
         </div>
@@ -93,14 +93,15 @@
                         <td>
                             <div class="col-sm-12">
                                 <input type="money" id=roomPrice class="form-control" placeholder="1박요금">
+                                <input type="hidden" id=roomcode class="form-control" val="">
                             </div>
                         </td>
                     </tr>
                 </table>
                 <div style="margin: left 2%;margin-top: 3%;">
-                <button class="btn btn-primary" type="submit" name =createRoom style="width:10%;" onclick="">등록</button>
-                <button class="btn btn-danger" type="submit" name =deleteRoom style="width:10%;" onclick="">삭제</button>
-                <button class="btn btn-warning" type="reset" name =clearForm style="width:10%;" id =btnClear onclick="">Clear</button>
+                <button class="btn btn-primary" type="submit" name =createRoom style="width:10%;" id=btnInsert onclick="">등록</button>
+                <button class="btn btn-danger" type="submit" name =deleteRoom style="width:10%;" id=btnDelete onclick="">삭제</button>
+                <button class="btn btn-warning" name =clearForm style="width:10%;" id=btnClear onclick="">Clear</button>
                 </div>
         </div>
 	</div>
@@ -116,14 +117,15 @@
 <script src='http://code.jquery.com/jquery-3.5.0.js'></script>
 <script>
 
-/* $('.leftR option').each(function (index,item){
-	console.log(item);
-}) */
-
 $(document)
 	.ready(function(){
 		$.post("http://localhost:8080/yrchoiHotel/getRoomList",{},function(result){
 			console.log(result);
+			$.each(result,function(ndx,value){
+				str='<option value="'+value['roomcode']+'">'+value['roomname']+' '+
+				value['typename']+' '+value['howmany']+' '+value['howmuch']+'</option>';
+				$('#leftR').append(str);
+			})
 		},'json');
 	})
 	.on('click','#leftR option',function(){
@@ -150,10 +152,45 @@ $(document)
 	    }  
 		$('#roomCepa').val(textR[3]);
 		$('#roomPrice').val(textR[4]);
+		$('#roomcode').val($('#leftR option:selected').val());
 	    return false; //stop bubbling
 	})
 	.on('click','#btnClear',function(){
 		$("#roomName,#roomTypeS,#roomCepa,#roomPrice").val("");
+	})
+	.on('click','#btnDelete',function(){
+		$.post('http://localhost:8080/yrchoiHotel/deleteRoom',{roomcode:$('#roomcode').val()},
+		function(result){
+			console.log(result);
+			if(result=="ok"){
+				$('#btnClear').trigger('click');
+				$('#leftR option:selected').remove();
+			}
+		},'text');
+	})
+	.on('click','#btnInsert',function(){
+		let roomname=$('#roomName').val();
+		let roomtype=$('#roomTypeS').val();
+		let howmany=$('#roomCepa').val();
+		let howmuch=$('#roomPrice').val();
+		let roomcode=$('#roomcode').val();
+		if(roomcode==''){
+			$.post('http://localhost:8080/yrchoiHotel/addRoom',
+					{roomname:roomname,roomtype:roomtype,howmany:howmany,howmuch:howmuch},
+					function(result){
+						if(result=='ok'){
+							location.reload();
+						}
+					},'text');
+		}else {
+			$.post('http://localhost:8080/yrchoiHotel/updateRoom',
+					{roomcode:roomcode,roomname:roomname,roomtype:roomtype,howmany:howmany,howmuch:howmuch},
+					function(result){
+						if(result=='ok'){
+							location.reload();
+						}
+					},'text');		
+		}	
 	})
 
 </script>
