@@ -66,7 +66,7 @@
                 </select>         
                 </div>
                <div>
-               <button class="btn btn-dark" style="color:black; width:120px; height:40px;margin-top: 30px;margin-left: 22px;"  id=btnSearch>검색</button>
+               <button class="btn btn-secondary" style="color:white; width:120px; height:40px;margin-top: 30px;margin-left: 22px;"  id=btnSearch>검색</button>
                </div>
             </div>
             <h2 style="border: 1px solid; width: 71%;color: white;text-align: center;;border-radius:10px;">예약가능 객실</h2>
@@ -144,7 +144,7 @@
 	                    </td>
 	                </tr>
 	                <tr>
-	                    <td style="color: white;border-radius: 5px;text-align: center;">예약자 모바일</td>
+	                    <td style="color: white;border-radius: 5px;text-align: center;">예약자<br>모바일</td>
 	                    <td>
 	                        <div class="col-sm-12">
 	                            <input type="text" class="form-control" id=mobile placeholder="예약자 모바일" required>
@@ -218,6 +218,8 @@ $(document)
 	    }  
 		$('#roomCepa').val(textR[3]);
 		$('#roomcode').val($('#leftR option:selected').val());
+	    $('#checkin').val($('#checkinSearch').val());
+		$('#checkout').val($('#checkoutSearch').val());
 	    return false; //stop bubbling
 	})	
 	.ready(function(){
@@ -308,6 +310,7 @@ $(document)
 			if(result=="ok"){
 				$('#btnClear').trigger('click');
 				$('#bookedRoom option:selected').remove();
+				$('#bookedRoomSearch option:selected').remove();
 			}
 		},'text');
 	})
@@ -384,6 +387,36 @@ $(document)
 		}
 	})
 	
-	
+	.on('click','#bookedRoomSearch option',function(){
+		var textB = $(this).text();
+		textB = $.trim(textB);
+		console.log(textB);
+		textB = textB.split(" ");
+	    $('#roomName').val(textB[0]); 
+	    /* $('#roomTypeS option:contains("'+textR[1]+'")').attr("selected", true); */
+/*   	    if(textB[1] == "Suite"){
+	    	 $("#roomTypeS").val("1").prop("selected", true);
+	    }
+	    if(textB[1] == "Family"){
+	    	 $("#roomTypeS").val("2").prop("selected", true);
+	    }
+	    if(textB[1] == "Double"){
+	    	 $("#roomTypeS").val("3").prop("selected", true);
+	    }
+	    if(textB[1] == "Single"){
+	    	 $("#roomTypeS").val("4").prop("selected", true);
+	    }  */ 
+	    $('#checkin').val('2021-'+textB[2]);
+		$('#checkout').val('2021-'+textB[3]);
+		$('#roomPeople').val(textB[1]);
+		$('#booker').val(textB[4]);
+		$('#mobile').val(textB[5]);
+		$('#bookcode').val(textB[6]);
+		$('#roomcode').val($('#bookedRoom option:selected').val());
+		console.log($('#bookcode').val());
+		console.log($('#roomcode').val());
+		
+	    return false; //stop bubbling
+	})
 </script>
 </html>
