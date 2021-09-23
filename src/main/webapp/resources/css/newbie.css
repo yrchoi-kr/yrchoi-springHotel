@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+/* 상단로고, 메뉴영역 */
+#nbody{
+    background-image: url(../Image/hotel_newbie.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center cetner;
+}
+#divPosition{
+	position:absolute;
+	height: 300px;
+	width: 300px;
+	margin:-150px 0px 0px -150px;
+	top: 40%;
+	left: 50%;
+}

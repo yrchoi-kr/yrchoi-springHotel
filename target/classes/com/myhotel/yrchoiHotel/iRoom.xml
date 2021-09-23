@@ -5,7 +5,7 @@
 <mapper namespace="com.myhotel.yrchoiHotel.iRoom">
 	<!-- selcet id="인터페이스의 메소드" resultType= "인터페이스의 반환 데이터타입 -->
 	<select id="getRoomList" resultType="com.myhotel.yrchoiHotel.Roominfo">
-		select a.roomcode,a.name roomname,b.name typename,a.howmany,a.howmuch from room a, roomtype b where a.type =b.typecode order by roomname
+		select a.roomcode,a.name roomname,b.name typename,a.howmany,a.howmuch from room a, roomtype b where a.type =b.typecode order by roomcode
 	</select>
 	<select id="getRoomType" resultType="com.myhotel.yrchoiHotel.Roomtype">
 		select typecode, name from roomtype order by typecode

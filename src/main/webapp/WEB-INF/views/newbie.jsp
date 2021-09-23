@@ -6,55 +6,53 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | 로그인 & 회원가입 </title>
+  <title>회원가입 </title>
   <!-- Google Font: Source Sans Pro 구글웹폰트 -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Tempusdominus Bootstrap 4 부트스트랩4 -->
+  <link rel="stylesheet" href="/yrchoiHotel/resources/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- Theme style AdminLTE 테마스타일 -->
+  <link rel="stylesheet" href="/yrchoiHotel/resources/admin/dist/css/adminlte.min.css">
+  <!-- HotelReservation CSS 임포트 -->
+  <link rel="stylesheet" href="/yrchoiHotel/resources/css/hotelReservation.css">
+  <!-- 부트스트랩CSS코어 임포트 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <!-- 부트스트랩JS코어 임포트 -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" id="nbody">
+<link rel="stylesheet" href="/yrchoiHotel/resources/css/newbie.css">
 <!-- 여기까지 header.jsp영역 -->
-<style>
-.radio_area {
-	box-sizing: border-box;
-	padding: 10px;
-}
-.gender {
-	padding: 4px 10px;
-	font-size: 14px;
-}
-</style>
 	<!-- 메인본문영역 -->
-	<div class="bodytext_area box_inner">
+	<div class="bodytext_area box_inner" id="divPosition">
 		<!-- 폼영역 -->
 		<form name="join_form" action="/yrchoiHotel/signin" method="post" class="appForm">
 			<fieldset>
-				<legend>회원가입폼</legend>
-				<p class="info_pilsoo pilsoo_item">
-				필수입력
-				</p>
+				<legend>회원가입</legend>
 				<ul class="app_list">
 					<li class="clear">
 						<label for="user_id_lbl" class="tit_lbl pilsoo_item">사용자ID</label>
-						<div class="app_content"><input type="text" name="user_id" class="w100p" id="user_id_lbl" placeholder="사용자ID를 입력해주세요" required/></div>
+						<div class="app_content"><input type="text" name="user_id" class="w100p" id="user_id_lbl" style="width:200px;" placeholder="사용자ID를 입력해주세요" required/></div>
 					</li>
-					<li class="clear">
+					<li class="clear" style="margin-top:10px;">
 						<label for="password_lbl" class="tit_lbl pilsoo_item">암호</label>
-						<div class="app_content">
-							<input type="password" name="user_pw" class="w100p" id="password_lbl" placeholder="비밀번호를 입력해주세요" required/>
+						<div class="app_content" >
+							<input type="password" name="user_pw" class="w100p" id="password_lbl" style="width:200px;" placeholder="비밀번호를 입력해주세요" required/>
 						</div>
 					</li>
-					<li class="clear">
+					<li class="clear" style="margin-top:10px;">
 						<label for="password_chk_lbl" class="tit_lbl pilsoo_item">암호확인</label>
-						<div class="app_content"><input type="password" name="password_chk" class="w100p" id="password_chk_lbl" placeholder="비밀번로를 다시 입력해주세요" required/></div>
+						<div class="app_content"><input type="password" name="password_chk" class="w100p" id="password_chk_lbl" style="width:200px;" placeholder="비밀번호를 다시 입력해주세요" required/></div>
 					</li>
-					<li class="clear">
+					<li class="clear" style="margin-top:10px;">
 						<label for="user_name_lbl" class="tit_lbl pilsoo_item">사용자이름</label>
-						<div class="app_content"><input type="text" name="user_name" class="w100p" id="user_name_lbl" placeholder="사용자이름을 입력해주세요" required/></div>
+						<div class="app_content"><input type="text" name="user_name" class="w100p" id="user_name_lbl" style="width:200px;" placeholder="사용자이름을 입력해주세요" required/></div>
 					</li>
 
 				</ul>
-				<p class="btn_line">
-				<button type="submit"  class="btn_baseColor" id="btn_insert" >Submit</button>
-				<button onclick="window.location.href='/yrchoiHotel'" class="btn btn-secondary btn-lg">돌아가기</button>
+				<p class="btn_line" style="margin-left:25px">
+				<button type="submit"  class="btn btn-secondary" id="btn_insert" >Submit</button>
+				<button onclick="window.location.href='/yrchoiHotel'" class="btn btn-secondary">돌아가기</button>
 				</p>	
 			</fieldset>
 			

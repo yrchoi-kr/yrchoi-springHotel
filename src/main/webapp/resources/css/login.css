@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+/* 상단로고, 메뉴영역 */
+	#lbody{
+    background-image: url(../Image/hotel_login.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center cetner;
+	}
+	#divPosition{
+	position:absolute;
+	height: 300px;
+	width: 300px;
+	margin:-150px 0px 0px -150px;
+	top: 50%;
+	left: 50%;
+	}
+
+/* //푸터영역 */

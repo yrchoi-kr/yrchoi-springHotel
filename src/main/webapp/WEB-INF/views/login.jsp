@@ -7,33 +7,30 @@ if("${param.msg}" == "fail") {
 	alert("로그인 실패입니다. 다시 입력해 주세요!");
 }
 </script>
-<!-- 게시판용 CSS 임포트 -->
-<link rel="stylesheet" href="/resources/css/board.css">
+<!-- login CSS 임포트 -->
+<link rel="stylesheet" href="/yrchoiHotel/resources/css/login.css">
 
     <!-- //메인상단위치표시영역 -->
 	
     <!-- 메인본문영역 -->
-    <div class="bodytext_area box_inner">
+    <div class="bodytext_area box_inner" id="divPosition">
         <!-- 폼영역 -->
         <form name="login_form" action="/yrchoiHotel/check_user" class="appForm" method="post">
             <fieldset>
-                <legend>로그인폼</legend>
-                <p class="info_pilsoo pilsoo_item">필수입력</p>
+                <legend style="color:white;">로그인</legend>
                 <ul class="app_list">
                     <li class="clear">
-                        <label for="id_lbl" class="tit_lbl pilsoo_item">아이디</label>
+                        <label for="id_lbl" class="tit_lbl pilsoo_item" style="color:white;">아이디</label>
                         <div class="app_content"><input autofocus type="text" name="user_id" class="w100p" id="id_lbl" placeholder="아이디를 입력해주세요" required/></div>
                     </li>
-                    <li class="clear">
-                        <label for="password_lbl" class="tit_lbl pilsoo_item">암호</label>
-                        <div class="app_content"><input type="password" name="user_pw" class="w100p" id="password_lbl" placeholder="암호를 입력해주세요" required/></div>
+                    <li class="clear" style="margin-top:10px;">
+                        <label for="password_lbl" class="tit_lbl pilsoo_item" style="color:white;">비밀번호</label>
+                        <div class="app_content"><input type="password" name="user_pw" class="w100p" id="password_lbl" placeholder="비밀번호를 입력해주세요" required/></div>
                     </li>
-
                 </ul>
-                <p class="btn_line">
-                <button type="submit" class="btn_baseColor" id=formLogin>로그인</button>
-                <button type="button" class="btn_baseColor" onclick="window.location.href='/yrchoiHotel'">돌아가기</button>
-                <button onclick="window.location.href='newbie'" class="btn btn-primary btn-lg" margin-left:5px;">회원가입</button>
+                <p class="btn_line"style="margin-left:20px;margin-top:15px;">
+	                <button type="submit" class="btn btn-secondary" id=formLogin>로그인</button>
+	                <button onclick="window.location.href='newbie'" class="btn-secondary">회원가입</button>
                 </p>	
             </fieldset>
         </form>

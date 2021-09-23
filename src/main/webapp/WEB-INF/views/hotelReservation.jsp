@@ -418,5 +418,25 @@ $(document)
 		
 	    return false; //stop bubbling
 	})
+	
+	.on('blur','#checkout',function(){
+		checkin= $('#checkin').val();
+		checkout= $('#checkout').val();
+		if(checkin >checkout){
+			alert("숙박기간을 잘못 설정하셨습니다.");
+		}
+	    return false; //stop bubbling
+	})
+	
+		.on('blur','#checkoutSearch',function(){
+		checkin= $('#checkinSearch').val();
+		checkout= $('#checkoutSearch').val();
+		if(checkin >checkout){
+			alert("숙박기간을 잘못 설정하셨습니다.");
+		}
+	    return false; //stop bubbling
+	})
+	
+	
 </script>
 </html>
