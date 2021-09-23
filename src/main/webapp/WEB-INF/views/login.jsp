@@ -30,7 +30,7 @@ if("${param.msg}" == "fail") {
                 </ul>
                 <p class="btn_line"style="margin-left:20px;margin-top:15px;">
 	                <button type="submit" class="btn btn-secondary" id=formLogin>로그인</button>
-	                <button onclick="window.location.href='newbie'" class="btn-secondary">회원가입</button>
+	                <button onclick="window.location.href='newbie'" class="btn btn-secondary">회원가입</button>
                 </p>	
             </fieldset>
         </form>
